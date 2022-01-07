@@ -4,26 +4,16 @@ sys.path.append("../")
 import random
 from rlgenerate.name import *
 
-def pack(a, b, c, d):
+def pack(a, b):
 	return {
 		"father":a,
-		"fatherstate":b,
-		"mother":c,
-		"motherstate":d,
+		"mother":b,
 	}
 
-def get_parents(lastname):
-	if random.randint(1, 10) == 1: #only one parent
-		if random.randint(1, 2) == 1: #one parent
-			returnp = pack(f"{lastname} {get_last_name()}", False, f"{get_name()}", True)
-			return(returnp)
-		else: #two parents
-			returnp = pack(f"{lastname} {get_last_name()}", True, f"{get_name()}", False)
-			return (returnp)
+def get_parents(lastname, gender):
+	if gender:
+		returnp = pack(f"{lastname} {get_last_name()}", f"{get_name(False)}")
+		return(returnp)
 	else:
-		if random.randint(1, 2) == 1:
-			returnp = pack(f"{lastname} {get_last_name()}", True, f"{get_name()}", True)
-			return(returnp)
-		else:
-			returnp = pack(f"{lastname} {get_last_name()}", True, f"{get_name()}", True)
-			return (returnp)
+		returnp = pack(f"{get_name(True)}, {lastname} {get_last_name()}")
+		return(returnp)
